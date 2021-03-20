@@ -1,0 +1,18 @@
+version: 1
+vaults:
+    -
+        fsPath: vault
+useFMTitle: true
+site:
+    copyAssets: true
+    siteHierarchies:
+        - root
+    siteRootDir: docs
+    siteUrl: https://supermanzer.github.io/DendronNotes/
+    usePrettyRefs: true
+    title: Manzer Notes
+    description: Personal knowledge space
+    duplicateNoteBehavior:
+        action: useVault
+        payload:
+            - vault

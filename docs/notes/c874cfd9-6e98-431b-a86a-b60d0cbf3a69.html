@@ -130,7 +130,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Localibrary</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ef98e148-df74-4d8b-a4e5-eb8d398c3b57.html">Annotations</a></li><li class="breadcrumb-nav-list-item">Approaches</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ef98e148-df74-4d8b-a4e5-eb8d398c3b57.html">Dependent Model Statuses</a></li><li class="breadcrumb-nav-list-item">Approaches</li></ol>
           </nav>
         
       
@@ -160,7 +160,7 @@
     <meta itemprop="headline" content="Approaches">
     
     <meta itemprop="datePublished" content="2021-03-20T12:36:50+00:00">
-    <meta itemprop="dateModified" content="2021-03-21T09:02:40+00:00">
+    <meta itemprop="dateModified" content="2021-03-21T13:30:04+00:00">
 
     <div class="page__inner-wrap">
 
@@ -170,7 +170,37 @@
 
         
 
-        <h1 id="approaches"><a aria-hidden="true" class="anchor-heading" href="#approaches"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Approaches</h1><span id="navId" data="c874cfd9-6e98-431b-a86a-b60d0cbf3a69"></span>
+        <h1 id="approaches"><a aria-hidden="true" class="anchor-heading" href="#approaches"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Approaches</h1>
+<h2 id="workflow"><a aria-hidden="true" class="anchor-heading" href="#workflow"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Workflow</h2>
+<p>In determining how I want to solve this problem I should first break down the workflow I envision for our <code>BookInstance</code> and <code>BorrowedCopy</code> records.</p>
+<ul>
+<li><code>BorrowedCopy</code> records represent the borrowing history of each copy but in certain situations repsent the current state of a copy.
+<ul>
+<li>When <code>date_checked_out</code> has a value but <code>date_returned</code> does not, this indicates the copy is <code>ON_LOAN</code>.</li>
+<li>When both <code>date_checked_out</code> and <code>date_returned</code> are <code>NULL</code> this implies a reservation for a given copy.</li>
+<li>All creations of a <code>BorrowedCopy</code> record will be reservations (i.e. no <code>date_checked_out</code>) if the copy status is not <code>AVAILABLE</code>.</li>
+</ul>
+</li>
+<li>Library Patrons can create <code>BorrowedCopy</code> record for a given <code>BookInstance</code> that is in the <code>AVAILABLE</code>, <code>ON_LOAN</code>, or <code>RESERVED</code> status.</li>
+<li>Only copies with a status of <code>AVAILABLE</code> can be checked out but reservation records can be created</li>
+<li>Only Library Staff can change a <code>BookInstance</code> status from <code>ON_LOAN</code> to any other status. In effect, they are responsible for returning a book to circulation.</li>
+<li>The presence or absence of a <code>BorrowedCopy</code> record without <code>date_checked_out</code> value for a given copy determines if it returns to an <code>AVAILABLE</code> or <code>RESERVED</code> status upon being returned to circulation.</li>
+</ul>
+<h2 id="controlling-bookinstance-status"><a aria-hidden="true" class="anchor-heading" href="#controlling-bookinstance-status"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Controlling <code>BookInstance</code> Status</h2>
+<p>Writing out the workflow is a great exercise and typing the list above helped clarify a few things for me. Initially I was thinking I could create an annotation that evaluates any related <code>BorrowedCopy</code> records for a given <code>BookInstance</code> and return this as the default for the status. While this approach does have the benefit of always being the most up to date (since it is caclulated each time a record is acccessed) it also increases the complexity of the SQL generated to fetch our record. In this scenario the <code>status</code> field would cease to exist on the <code>BookInstance</code> model per se and only be returned as a dynamically caculated value.</p>
+<p>However, this approach cannot statisfy one of the requirements of the above workflow. That is that only Library staff can return a copy to circulation. This rules out the pure annotation approach since some changes in status are not controlled by related record values.</p>
+<h3 id="static-fields-approach"><a aria-hidden="true" class="anchor-heading" href="#static-fields-approach"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Static Fields Approach</h3>
+<p>While we must rely on a static model field to get the functionality we want, we can still utilize a similar approach that moves more of the operations to the database layer. This will help make sure that the application can better scale as the library gets more popular or patrons getting into reservation wars for the most popular books.</p>
+<p>I'll use Django's nifty <a href="https://docs.djangoproject.com/en/3.1/ref/models/conditional-expressions/#conditional-update">Conditional Update</a> approach. This allows me to specificy various criteria in When clauses that will be evaluated in the database and which value should be written to the status field depending on which clause returns <code>True</code>.</p>
+<p>Now where to put this little bit of logic? Well the returning to circulation operaton happens directly with the BookInstance model so it would seem that we need a model method to represent that action wherein we will place this logic. <em>However</em> we also need to revise the logic in the <code>save()</code> method for the <code>BorrowedCopy</code> model to accurately reflect the intended workflow.</p>
+<p>In order to avoid having to maintain multiple copies of the same logic I will use one of my favorite features of Django annotations. That is they can be defined and assigned to a variable, outside of calling the actual query. This means I can <em>hopefully</em> create a single definition of this business logic and reuse it in multiple model methods.</p>
+<h4 id="on-second-thought"><a aria-hidden="true" class="anchor-heading" href="#on-second-thought"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>On Second Thought...</h4>
+<p>We'll need two versions of the conditional update annotation.</p>
+<ul>
+<li><code>status_patrons</code>: The one for library patrons will determine if it should set the copy's status to <code>ON_LOAN</code> (checking out), <code>RESERVED</code> (placing on hold), or <code>MAINTENANCE</code> (returned and awaiting library staff).</li>
+<li><code>status_staff</code>: The one for staff will determine if a copy should be set to <code>RESERVED</code> (if <code>BorrowedCopy</code> records without a checkout date exist) or <code>AVAILABLE</code> (if not) when it is returned to circulation (or taken out of <code>MAINTENANCE</code> status).</li>
+</ul>
+<p>The benefit of this approach is we don't need to require either staff or patrons to know what the appropriate status to set for the copy is. Of course the front-end will determine whether to present a 'Check Out' or 'Reserve' button to the user (or both) for the patrons. For the staff, I will do a little bit of customizing the default Django admin interface to allow staff to 'Return to Circulation' for multiple copies at once.</p><span id="navId" data="c874cfd9-6e98-431b-a86a-b60d0cbf3a69"></span>
 
                 
       </section>

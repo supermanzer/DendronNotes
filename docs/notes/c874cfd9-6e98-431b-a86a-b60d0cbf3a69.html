@@ -160,7 +160,7 @@
     <meta itemprop="headline" content="Fixing Copy Status">
     
     <meta itemprop="datePublished" content="2021-03-20T12:36:50+00:00">
-    <meta itemprop="dateModified" content="2021-03-22T12:28:01+00:00">
+    <meta itemprop="dateModified" content="2021-03-27T13:36:51+00:00">
 
     <div class="page__inner-wrap">
 
@@ -202,6 +202,7 @@
 </ul>
 <p>The benefit of this approach is we don't need to require either staff or patrons to know what the appropriate status is to set for the copy. Of course the front-end will determine whether to present a 'Check Out' or 'Reserve' button to the user (or both) for the patrons. For the staff, I will do a little bit of <a href="https://docs.djangoproject.com/en/3.1/ref/contrib/admin/actions/">customizing the default Django admin interface</a> to allow staff to 'Return to Circulation' for multiple copies at once.</p>
 <p>In this case I get to play with a few of the nifty advanced ORM features of Django. Let's take a look!</p>
+<h3 id="annotations-for-static-field-values"><a aria-hidden="true" class="anchor-heading" href="#annotations-for-static-field-values"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Annotations for Static Field Values</h3>
 <ul>
 <li>First I'm using the <a href="https://docs.djangoproject.com/en/3.1/ref/models/expressions/#subquery-expressions"><code>OuterRef</code> to nest subqueries</a> within the overall <code>Case</code> statement. I will use these subqueries to define each of statuses.</li>
 </ul>
@@ -251,7 +252,68 @@ status_staff <span class="token operator">=</span> Case<span class="token punctu
 </code></pre>
 <p>The <code>When</code> clause expects a dynamic value as the <code>then</code> keyword argument so to get this working as expected we wrap our static status values in the <code>Value</code> class. This ensures we write back "o" for <code>ON_LOAN</code> rather than go looking for a field called "o".</p>
 <p>The <code>Case</code> statement will evaluate each <code>When</code> clause in order so even if a book being checked out has other future reservations, the <code>status_patrons</code> clause will still return the character value designating the status as "on loan". This is another example of why I like to declare each statically define choice to it's own static variable on the model (take a look at the BookInstance definition <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> if you need a refresher). It means there is a single source of truth when it comes to static values in the application.</p>
-<p>Alright, I think I've got my subqueries and annotations worked out. Now to plug them into the application workflow.</p>
+<h3 id="implementing-annotation--static-field-approach"><a aria-hidden="true" class="anchor-heading" href="#implementing-annotation--static-field-approach"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Implementing Annotation + Static Field Approach</h3>
+<p>Alright, I think I've got my subqueries and annotations worked out. Now to plug them into the application workflow. For the patrons this is pretty simple. We just replace the setting of the status field from a manual value to using the query result defined above:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">save</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Override default save method to set due date and update copy status"""</span>
+        logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Calling model save method for </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">from</span> <span class="token punctuation">.</span>annotations <span class="token keyword">import</span> status_patrons
+        BookInstance<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>pk<span class="token operator">=</span>self<span class="token punctuation">.</span>copy<span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>
+            status<span class="token operator">=</span>status_patrons
+        <span class="token punctuation">)</span>
+        <span class="token comment"># We are going to use these records to hold reservations as well</span>
+        <span class="token comment"># so we need to accomodate situations where date_checked_out = None</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>date_checked_out <span class="token keyword">and</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>due_date<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>due_date <span class="token operator">=</span> self<span class="token punctuation">.</span>date_checked_out <span class="token operator">+</span> self<span class="token punctuation">.</span>CHECKOUT_DURATION
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>date_returned <span class="token keyword">and</span> self<span class="token punctuation">.</span>date_returned <span class="token operator">></span> self<span class="token punctuation">.</span>due_date<span class="token punctuation">:</span>
+            <span class="token comment"># Assigning late fee if returned after due date</span>
+            self<span class="token punctuation">.</span>assessed_late_fee <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>date_returned <span class="token operator">-</span>
+                                      self<span class="token punctuation">.</span>due_date<span class="token punctuation">)</span><span class="token punctuation">.</span>days <span class="token operator">*</span> self<span class="token punctuation">.</span>LATE_FEE
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+
+</code></pre>
+<p>You can compare this to the previous <code>save()</code> method <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> to see the difference but here's the plain english version. We import the query (doing it within the method to avoid circular import issues) and update the related copy. We use the <code>.filter()</code> approach because the <code>update()</code> functionality belongs to the <code>Queryset</code> object, not an individual record. Additionally the <code>status_patrons</code> includes a <code>Subquery</code> clause so it needs to be placed within an outer query in order to operate as expected. Since the decision of what status should be assigned is handled by the query we get to call this without doing any <code>if...else</code> checks first. That is still done to set due_dates and late fees. At some point I might look into streamlining that. But for now this does the trick. Since both checking out and returning book actions in the front-end trigger the <code>save()</code> method for the <code>BorrowedCopy</code> model, this handles both actions nicely.</p>
+<p>Now let's take a look at the implementation of the staff workflow. This makes use of one of the coolest features of the <a href="https://docs.djangoproject.com/en/3.1/ref/contrib/admin/">Django admin site</a>. That is the amazing amount of customization that is possible. The admin site comes with basic CRUD functionality built in, assuming you have properly registered any custom models in the autogenerated <code>admin.py</code> file. Since I've decided that library staff would be using the Django admin site, this means we just need to add one additional option to the <code>BookInstance</code> model. And it's <strong>super</strong> easy! Let's take a look:</p>
+<p>I like to keep functionality encapsulated so I create a separate file:</p>
+<pre class="language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+    catalog/admin_functions.py
+
+    Creating custom funcionality to be added to the Django admin site.
+    https://docs.djangoproject.com/en/3.1/ref/contrib/admin/actions/
+
+    Function(s):
+    * return_to_circulation:  Sets `BookInstance` status based on `BorrowedCopy` subquery results
+"""</span>
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>annotations <span class="token keyword">import</span> status_staff
+
+
+<span class="token keyword">def</span> <span class="token function">return_to_circulation</span><span class="token punctuation">(</span>modeladmin<span class="token punctuation">,</span> request<span class="token punctuation">,</span> queryset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Assign correct `status` value to `BookInstance` based on `BorrowedCopy` subquery
+
+    Args:
+        modeladmin (ModelAdmin): ModelAdmin objeect for `BookInstance`
+        request (HttpRequest): HttpRequest object
+        queryset (Queryset): Queryset object of `BookInstance` records to be modified.
+    """</span>
+    queryset<span class="token punctuation">.</span>update<span class="token punctuation">(</span>status<span class="token operator">=</span>status_staff<span class="token punctuation">)</span>
+
+
+<span class="token comment"># Adding a more helpful descrption to be rendered in the admin interface</span>
+return_to_circulation<span class="token punctuation">.</span>short_description <span class="token operator">=</span> <span class="token string">'Return copies to circulation'</span>
+</code></pre>
+<p>When I said this was super easy, I wasn't kidding. There are lots of comments so it may look like more is going on here but essentially <code>queryset.update(status=status_staff)</code> is all we need to do. Everything else is just good housekeeping. Now how do we assign this functionality to our admin site? In the <code>admin.py</code> file of course! More specifically, the <code>InstanceAdmin</code> class definition.</p>
+<pre class="language-python"><code class="language-python">catalog<span class="token operator">/</span>admin<span class="token punctuation">.</span>py
+<span class="token keyword">from</span> <span class="token punctuation">.</span>admin_functions <span class="token keyword">import</span> return_to_circulation
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">class</span> <span class="token class-name">InstanceAdmin</span><span class="token punctuation">(</span>admin<span class="token punctuation">.</span>ModelAdmin<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    actions <span class="token operator">=</span> <span class="token punctuation">[</span>return_to_circulation<span class="token punctuation">,</span> <span class="token punctuation">]</span>  <span class="token comment"># yes it's really this simple</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>After these changes are saved library staff can update returned books to the correct status in bulk. Let's think about how cool that is for a second. A tired librarian could come in on Monday to find hundreds of books returned and awaiting return to circulation. Rather than having to look at each record and see if there are any pending reservations before updating the status of each book copy, the staff member could simple "Select All" and update the status. I think that's pretty damn nifty.</p>
+<img src="/assets/images/update.png" alt="Update Admin Action" width="800">
 <hr>
 <h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
 <ul>

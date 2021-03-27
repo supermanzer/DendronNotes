@@ -251,7 +251,12 @@ status_staff <span class="token operator">=</span> Case<span class="token punctu
 </code></pre>
 <p>The <code>When</code> clause expects a dynamic value as the <code>then</code> keyword argument so to get this working as expected we wrap our static status values in the <code>Value</code> class. This ensures we write back "o" for <code>ON_LOAN</code> rather than go looking for a field called "o".</p>
 <p>The <code>Case</code> statement will evaluate each <code>When</code> clause in order so even if a book being checked out has other future reservations, the <code>status_patrons</code> clause will still return the character value designating the status as "on loan". This is another example of why I like to declare each statically define choice to it's own static variable on the model (take a look at the BookInstance definition <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> if you need a refresher). It means there is a single source of truth when it comes to static values in the application.</p>
-<p>Alright, I think I've got my subqueries and annotations worked out. Now to plug them into the application workflow.</p><span id="navId" data="c874cfd9-6e98-431b-a86a-b60d0cbf3a69"></span>
+<p>Alright, I think I've got my subqueries and annotations worked out. Now to plug them into the application workflow.</p>
+<hr>
+<h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
+<ul>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html">Current Status &#x26; Next Steps</a></li>
+</ul><span id="navId" data="c874cfd9-6e98-431b-a86a-b60d0cbf3a69"></span>
 
                 
       </section>

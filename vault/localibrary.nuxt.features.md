@@ -1,0 +1,17 @@
+---
+id: f02e4c76-8350-4f2c-b9cb-4830eb7625f7
+title: Features - Current and Future
+desc: "A description of the features I want this front-end interface to have."
+updated: 1616869517174
+created: 1616868716281
+---
+
+Interface features, workflows, and technologies.
+
+- [x] Authentication against back-end using [Django REST Framework Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) and [@nuxt/auth](https://auth.nuxtjs.org/).
+- [x] Registered patrons can check out a book that will be assigned to their checkout history.
+- [x] Registered patrons can see their checked out books, checkout history, and total late fees.
+- [ ] Allow a registered patron to return and book copy and update all necessary databse records.
+- [ ] Allow registered patrons to "pay" late fees and write this back to the database.
+- [ ] Allow patrons to create a reservation on a book copy not currently available.
+- [ ] Upon login, notify a patron if a book they have reserved is currently available for checkout.

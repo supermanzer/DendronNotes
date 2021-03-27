@@ -2,7 +2,7 @@
 id: root
 title: Manzer's Notes
 desc: "A testing out of the Dendron hierarchical note taking as a means for organizing my personal software projects."
-updated: 1616435842636
+updated: 1616869806608
 created: 1595961348801
 stub: false
 ---
@@ -13,4 +13,4 @@ Dendron root node for note vautls. The notes below will attempt to follow genera
 
 ## Projects
 
-- [LocaLibrary](https://github.com/supermanzer/NuxtDRFMDN) - A simple but complete full-stack web application replicating a local library site for patrons. It uses Django & DRF for the back-end and Nuxt.js for the front-end.
+- [[localibrary]] - A simple but complete full-stack web application replicating a local library site for patrons. It uses Django & DRF for the back-end and Nuxt.js for the front-end.

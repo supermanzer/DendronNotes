@@ -2,7 +2,7 @@
 id: c874cfd9-6e98-431b-a86a-b60d0cbf3a69
 title: Fixing Copy Status
 desc: "How I plan to solve the problem of properly setting the status field of the BookInstance model."
-updated: 1616877411978
+updated: 1618676409136
 created: 1616269010379
 ---
 
@@ -175,4 +175,4 @@ class InstanceAdmin(admin.ModelAdmin):
 
 After these changes are saved library staff can update returned books to the correct status in bulk. Let's think about how cool that is for a second. A tired librarian could come in on Monday to find hundreds of books returned and awaiting return to circulation. Rather than having to look at each record and see if there are any pending reservations before updating the status of each book copy, the staff member could simple "Select All" and update the status. I think that's pretty damn nifty.
 
-<img src="/assets/images/update.png" alt="Update Admin Action" width="800"/>
+<img src="/DendronNotes/assets/images/update.png" alt="Update Admin Action" width="800"/>

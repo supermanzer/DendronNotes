@@ -10,16 +10,16 @@
 
   <link
     rel="shortcut icon"
-    href="https://supermanzer.github.io/DendronNotes/favicon.ico"
+    href="https://supermanzer.github.io/DendronNotes/DendronNotes/favicon.ico"
     type="image/x-icon"
   />
   <link
     rel="stylesheet"
-    href="https://supermanzer.github.io/DendronNotes/assets/css/just-the-docs-default.css"
+    href="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/css/just-the-docs-default.css"
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/assets/js/just-the-docs.js"
+    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/just-the-docs.js"
   ></script>
   <link
     rel="stylesheet"
@@ -33,7 +33,7 @@
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/assets/js/vendor/lunr.min.js"
+    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/vendor/lunr.min.js"
   ></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,6 +60,7 @@
   <meta name="twitter:title" content="Current Status & Next Steps - Manzer Notes" />
   
 </head>
+
 
 
 <body>
@@ -98,7 +99,7 @@
 
     <div class="side-bar">
       <div class="site-header">
-        <a href="https://supermanzer.github.io/DendronNotes" class="site-title lh-tight">
+        <a href="https://supermanzer.github.io/DendronNotes/DendronNotes" class="site-title lh-tight">
   Manzer Notes
 
  </a>
@@ -130,7 +131,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/84a5986a-2b11-4161-8a4e-7f107f2583c3.html">Nuxt - Front End</a></li><li class="breadcrumb-nav-list-item">Current Status & Next Steps</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/84a5986a-2b11-4161-8a4e-7f107f2583c3.html">Nuxt - Front End</a></li><li class="breadcrumb-nav-list-item">Current Status & Next Steps</li></ol>
           </nav>
         
       
@@ -140,9 +141,15 @@
         
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        
+        
+
+        
+
+        
 
         
 
@@ -173,11 +180,11 @@
         <h1 id="current-status--next-steps"><a aria-hidden="true" class="anchor-heading" href="#current-status--next-steps"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Current Status &#x26; Next Steps</h1>
 <h3 id="3272021"><a aria-hidden="true" class="anchor-heading" href="#3272021"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>3.27.2021</h3>
 <hr>
-<p>The update queries are written to set the correct <code>status</code> of a <code>BookInstance</code> record have been written (see <a href="https://supermanzer.github.io/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">here</a>). The update to the related <code>BookInstance</code> record using the <code>status_patron</code> annotation has been included in the <code>save()</code> method of the <code>BorrowedCopy</code> data model. To complete the approach to using subqueries and annotations when dealing with the BookInstance, a custom filter and custom actions needs to be added to the default Django admin interface (which is currently how "Library Staff" interact with the database).</p>
+<p>The update queries are written to set the correct <code>status</code> of a <code>BookInstance</code> record have been written (see <a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">here</a>). The update to the related <code>BookInstance</code> record using the <code>status_patron</code> annotation has been included in the <code>save()</code> method of the <code>BorrowedCopy</code> data model. To complete the approach to using subqueries and annotations when dealing with the BookInstance, a custom filter and custom actions needs to be added to the default Django admin interface (which is currently how "Library Staff" interact with the database).</p>
 <hr>
 <h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
 <ul>
-<li><a href="https://supermanzer.github.io/DendronNotes/notes/84a5986a-2b11-4161-8a4e-7f107f2583c3.html">Nuxt - Front End</a></li>
+<li><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/84a5986a-2b11-4161-8a4e-7f107f2583c3.html">Nuxt - Front End</a></li>
 </ul><span id="navId" data="856843c7-5881-4d05-becc-7ae2f6a6499d"></span>
 
                 
@@ -193,6 +200,7 @@
   
 </div>
 
+        <div class="thumbs feedback_trigger right-bottom"></div>
 
         
           <hr>
@@ -214,5 +222,6 @@
   <div class="search-overlay"></div>
 
 </div>
+
 </body>
 </html>

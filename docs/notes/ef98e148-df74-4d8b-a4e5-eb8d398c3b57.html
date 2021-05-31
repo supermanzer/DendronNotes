@@ -10,16 +10,16 @@
 
   <link
     rel="shortcut icon"
-    href="https://supermanzer.github.io/DendronNotes/favicon.ico"
+    href="https://supermanzer.github.io/DendronNotes/DendronNotes/favicon.ico"
     type="image/x-icon"
   />
   <link
     rel="stylesheet"
-    href="https://supermanzer.github.io/DendronNotes/assets/css/just-the-docs-default.css"
+    href="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/css/just-the-docs-default.css"
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/assets/js/just-the-docs.js"
+    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/just-the-docs.js"
   ></script>
   <link
     rel="stylesheet"
@@ -33,7 +33,7 @@
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/assets/js/vendor/lunr.min.js"
+    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/vendor/lunr.min.js"
   ></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,6 +60,7 @@
   <meta name="twitter:title" content="Dependent Model Fields - Manzer Notes" />
   
 </head>
+
 
 
 <body>
@@ -98,7 +99,7 @@
 
     <div class="side-bar">
       <div class="site-header">
-        <a href="https://supermanzer.github.io/DendronNotes" class="site-title lh-tight">
+        <a href="https://supermanzer.github.io/DendronNotes/DendronNotes" class="site-title lh-tight">
   Manzer Notes
 
  </a>
@@ -130,7 +131,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item">Dependent Model Fields</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item">Dependent Model Fields</li></ol>
           </nav>
         
       
@@ -140,9 +141,15 @@
         
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        
+        
+
+        
+
+        
 
         
 
@@ -176,16 +183,15 @@
 <h2 id="models-in-question"><a aria-hidden="true" class="anchor-heading" href="#models-in-question"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Models in Question</h2>
 <p>To refresh, here are the model definitions, complete with <code>Meta</code> info and methods:</p>
 <p></p><p></p><div class="portal-container">
-  <div class="portal-head">
-  <div class="portal-backlink">
-  <div class="portal-title">From <span class="portal-text-title">localibrary.models.copy_borrowed</span></div>
-  <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
-  </div>
-  </div>
-  <div id="portal-parent-anchor" class="portal-parent" markdown="1">
-  <div class="portal-parent-fader-top"></div>
-  <div class="portal-parent-fader-bottom"></div>
-  <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">BookInstance</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<div class="portal-head">
+<div class="portal-backlink">
+<div class="portal-title">From <span class="portal-text-title">localibrary.models.copy_borrowed</span></div>
+<a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
+</div>
+</div>
+<div id="portal-parent-anchor" class="portal-parent" markdown="1">
+<div class="portal-parent-fader-top"></div>
+<div class="portal-parent-fader-bottom"></div><pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">BookInstance</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""Model representing a specific copy of a book"""</span>
     <span class="token comment"># CONSTANTS - I FIND THIS APPROACH USEFUL EVEN THOUGH IT SEEMS REDUNDANT</span>
     MAINTENANCE <span class="token operator">=</span> <span class="token string">'m'</span>
@@ -282,14 +288,13 @@
             <span class="token keyword">return</span> past_due<span class="token punctuation">.</span>days <span class="token operator">*</span> self<span class="token punctuation">.</span>LATE_FEE <span class="token keyword">if</span> past_due<span class="token punctuation">.</span>days <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token number">0</span>
         <span class="token comment"># If there's no due date it hasn't been chacked out yet (Reserved), nothing to see here</span>
         <span class="token keyword">return</span> <span class="token boolean">None</span>
-</code></pre></div>    
-  </div><p></p><p></p>
+</code></pre></div></div><p></p><p></p>
 <p>We can see there is an awful lot of calculations and comparisons being carried out in the Python layer of the application. While this is fine in general and likely to not cause any issues on an application of this size, I still prefer to get in the habit of optimizing where I can. With that in mind I would like to utilize <a href="https://docs.djangoproject.com/en/3.1/ref/models/querysets/#annotate">Django Annotations</a> to move more of these operations to the database layer. Let's take a look at a few different approaches to simplifying this approach.</p>
 <hr>
 <hr>
 <h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
 <ol>
-<li><a href="https://supermanzer.github.io/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">Fixing Copy Status</a></li>
+<li><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">Fixing Copy Status</a></li>
 </ol><span id="navId" data="ef98e148-df74-4d8b-a4e5-eb8d398c3b57"></span>
 
                 
@@ -305,6 +310,7 @@
   
 </div>
 
+        <div class="thumbs feedback_trigger right-bottom"></div>
 
         
           <hr>
@@ -326,5 +332,6 @@
   <div class="search-overlay"></div>
 
 </div>
+
 </body>
 </html>

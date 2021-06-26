@@ -62,7 +62,7 @@
     }
   
     function initNavBar() {
-      return fetch("https://supermanzer.github.io/DendronNotes/DendronNotes/nav.html").then(function (response) {
+      return fetch("https://supermanzer.github.io/DendronNotes/nav.html").then(function (response) {
         return response.text().then((content) => {
           replaceNav(content);
           return;
@@ -80,7 +80,7 @@
     function initSearch() {
       var request = new XMLHttpRequest();
       // TODO: CHECK IF THIS WORKS WITHOUT ABSOLUTE_URL
-      request.open("GET", "https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/search-data.json", true);
+      request.open("GET", "https://supermanzer.github.io/DendronNotes/assets/js/search-data.json", true);
   
       request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
@@ -514,7 +514,7 @@
       var cssFile = document.querySelector('[rel="stylesheet"]');
       cssFile.setAttribute(
         "href",
-        'https://supermanzer.github.io/DendronNotes/DendronNotes/assets/css/just-the-docs-' + theme + ".css"
+        'https://supermanzer.github.io/DendronNotes/assets/css/just-the-docs-' + theme + ".css"
       );
     };
   

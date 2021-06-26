@@ -4,7 +4,7 @@ vaults:
         fsPath: vault
 useFMTitle: true
 site:
-    assetsPrefix: DendronNotes
+    # assetsPrefix: DendronNotes
     copyAssets: true
     siteHierarchies:
         - root

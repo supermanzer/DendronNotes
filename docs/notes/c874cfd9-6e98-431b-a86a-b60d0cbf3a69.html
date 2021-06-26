@@ -10,16 +10,16 @@
 
   <link
     rel="shortcut icon"
-    href="https://supermanzer.github.io/DendronNotes/DendronNotes/favicon.ico"
+    href="https://supermanzer.github.io/DendronNotes/favicon.ico"
     type="image/x-icon"
   />
   <link
     rel="stylesheet"
-    href="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/css/just-the-docs-default.css"
+    href="https://supermanzer.github.io/DendronNotes/assets/css/just-the-docs-default.css"
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/just-the-docs.js"
+    src="https://supermanzer.github.io/DendronNotes/assets/js/just-the-docs.js"
   ></script>
   <link
     rel="stylesheet"
@@ -33,7 +33,7 @@
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/vendor/lunr.min.js"
+    src="https://supermanzer.github.io/DendronNotes/assets/js/vendor/lunr.min.js"
   ></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -99,7 +99,7 @@
 
     <div class="side-bar">
       <div class="site-header">
-        <a href="https://supermanzer.github.io/DendronNotes/DendronNotes" class="site-title lh-tight">
+        <a href="https://supermanzer.github.io/DendronNotes" class="site-title lh-tight">
   Manzer Notes
 
  </a>
@@ -131,7 +131,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/ef98e148-df74-4d8b-a4e5-eb8d398c3b57.html">Dependent Model Fields</a></li><li class="breadcrumb-nav-list-item">Fixing Copy Status</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/ef98e148-df74-4d8b-a4e5-eb8d398c3b57.html">Dependent Model Fields</a></li><li class="breadcrumb-nav-list-item">Fixing Copy Status</li></ol>
           </nav>
         
       
@@ -258,7 +258,7 @@ status_staff <span class="token operator">=</span> Case<span class="token punctu
 <span class="token punctuation">)</span>
 </code></pre>
 <p>The <code>When</code> clause expects a dynamic value as the <code>then</code> keyword argument so to get this working as expected we wrap our static status values in the <code>Value</code> class. This ensures we write back "o" for <code>ON_LOAN</code> rather than go looking for a field called "o".</p>
-<p>The <code>Case</code> statement will evaluate each <code>When</code> clause in order so even if a book being checked out has other future reservations, the <code>status_patrons</code> clause will still return the character value designating the status as "on loan". This is another example of why I like to declare each statically define choice to it's own static variable on the model (take a look at the BookInstance definition <a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> if you need a refresher). It means there is a single source of truth when it comes to static values in the application.</p>
+<p>The <code>Case</code> statement will evaluate each <code>When</code> clause in order so even if a book being checked out has other future reservations, the <code>status_patrons</code> clause will still return the character value designating the status as "on loan". This is another example of why I like to declare each statically define choice to it's own static variable on the model (take a look at the BookInstance definition <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> if you need a refresher). It means there is a single source of truth when it comes to static values in the application.</p>
 <h3 id="implementing-annotation--static-field-approach"><a aria-hidden="true" class="anchor-heading" href="#implementing-annotation--static-field-approach"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Implementing Annotation + Static Field Approach</h3>
 <p>Alright, I think I've got my subqueries and annotations worked out. Now to plug them into the application workflow. For the patrons this is pretty simple. We just replace the setting of the status field from a manual value to using the query result defined above:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">save</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -279,7 +279,7 @@ status_staff <span class="token operator">=</span> Case<span class="token punctu
         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
 
 </code></pre>
-<p>You can compare this to the previous <code>save()</code> method <a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> to see the difference but here's the plain english version. We import the query (doing it within the method to avoid circular import issues) and update the related copy. We use the <code>.filter()</code> approach because the <code>update()</code> functionality belongs to the <code>Queryset</code> object, not an individual record. Additionally the <code>status_patrons</code> includes a <code>Subquery</code> clause so it needs to be placed within an outer query in order to operate as expected. Since the decision of what status should be assigned is handled by the query we get to call this without doing any <code>if...else</code> checks first. That is still done to set due_dates and late fees. At some point I might look into streamlining that. But for now this does the trick. Since both checking out and returning book actions in the front-end trigger the <code>save()</code> method for the <code>BorrowedCopy</code> model, this handles both actions nicely.</p>
+<p>You can compare this to the previous <code>save()</code> method <a href="https://supermanzer.github.io/DendronNotes/notes/1a9144d0-ac3f-48af-9db9-aee31546240b.html">here</a> to see the difference but here's the plain english version. We import the query (doing it within the method to avoid circular import issues) and update the related copy. We use the <code>.filter()</code> approach because the <code>update()</code> functionality belongs to the <code>Queryset</code> object, not an individual record. Additionally the <code>status_patrons</code> includes a <code>Subquery</code> clause so it needs to be placed within an outer query in order to operate as expected. Since the decision of what status should be assigned is handled by the query we get to call this without doing any <code>if...else</code> checks first. That is still done to set due_dates and late fees. At some point I might look into streamlining that. But for now this does the trick. Since both checking out and returning book actions in the front-end trigger the <code>save()</code> method for the <code>BorrowedCopy</code> model, this handles both actions nicely.</p>
 <p>Now let's take a look at the implementation of the staff workflow. This makes use of one of the coolest features of the <a href="https://docs.djangoproject.com/en/3.1/ref/contrib/admin/">Django admin site</a>. That is the amazing amount of customization that is possible. The admin site comes with basic CRUD functionality built in, assuming you have properly registered any custom models in the autogenerated <code>admin.py</code> file. Since I've decided that library staff would be using the Django admin site, this means we just need to add one additional option to the <code>BookInstance</code> model. And it's <strong>super</strong> easy! Let's take a look:</p>
 <p>I like to keep functionality encapsulated so I create a separate file:</p>
 <pre class="language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
@@ -324,7 +324,7 @@ return_to_circulation<span class="token punctuation">.</span>short_description <
 <hr>
 <h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
 <ul>
-<li><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html">Current Status &#x26; Next Steps</a></li>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html">Current Status &#x26; Next Steps</a></li>
 </ul><span id="navId" data="c874cfd9-6e98-431b-a86a-b60d0cbf3a69"></span>
 
                 

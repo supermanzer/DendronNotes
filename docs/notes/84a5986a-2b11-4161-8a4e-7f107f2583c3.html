@@ -10,16 +10,16 @@
 
   <link
     rel="shortcut icon"
-    href="https://supermanzer.github.io/DendronNotes/DendronNotes/favicon.ico"
+    href="https://supermanzer.github.io/DendronNotes/favicon.ico"
     type="image/x-icon"
   />
   <link
     rel="stylesheet"
-    href="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/css/just-the-docs-default.css"
+    href="https://supermanzer.github.io/DendronNotes/assets/css/just-the-docs-default.css"
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/just-the-docs.js"
+    src="https://supermanzer.github.io/DendronNotes/assets/js/just-the-docs.js"
   ></script>
   <link
     rel="stylesheet"
@@ -33,7 +33,7 @@
   />
   <script
     type="text/javascript"
-    src="https://supermanzer.github.io/DendronNotes/DendronNotes/assets/js/vendor/lunr.min.js"
+    src="https://supermanzer.github.io/DendronNotes/assets/js/vendor/lunr.min.js"
   ></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -99,7 +99,7 @@
 
     <div class="side-bar">
       <div class="site-header">
-        <a href="https://supermanzer.github.io/DendronNotes/DendronNotes" class="site-title lh-tight">
+        <a href="https://supermanzer.github.io/DendronNotes" class="site-title lh-tight">
   Manzer Notes
 
  </a>
@@ -131,7 +131,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item">Nuxt - Front End</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item">Nuxt - Front End</li></ol>
           </nav>
         
       
@@ -185,7 +185,7 @@
 <div class="portal-head">
 <div class="portal-backlink">
 <div class="portal-title">From <span class="portal-text-title">localibrary.nuxt.features</span></div>
-<a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/f02e4c76-8350-4f2c-b9cb-4830eb7625f7.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
+<a href="https://supermanzer.github.io/DendronNotes/notes/f02e4c76-8350-4f2c-b9cb-4830eb7625f7.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
 </div>
 </div>
 <div id="portal-parent-anchor" class="portal-parent" markdown="1">
@@ -195,7 +195,7 @@
 <li class="task-list-item"><input type="checkbox" checked disabled> Authentication against back-end using <a href="https://django-rest-framework-simplejwt.readthedocs.io/en/latest/">Django REST Framework Simple JWT</a> and <a href="https://auth.nuxtjs.org/">@nuxt/auth</a>.</li>
 <li class="task-list-item"><input type="checkbox" checked disabled> Registered patrons can check out a book that will be assigned to their checkout history.</li>
 <li class="task-list-item"><input type="checkbox" checked disabled> Registered patrons can see their checked out books, checkout history, and total late fees.</li>
-<li class="task-list-item"><input type="checkbox" disabled> Allow a registered patron to return and book copy and update all necessary databse records.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Allow a registered patron to return a book copy and update all necessary database records.</li>
 <li class="task-list-item"><input type="checkbox" disabled> Allow registered patrons to "pay" late fees and write this back to the database.</li>
 <li class="task-list-item"><input type="checkbox" disabled> Allow patrons to create a reservation on a book copy not currently available.</li>
 <li class="task-list-item"><input type="checkbox" disabled> Upon login, notify a patron if a book they have reserved is currently available for checkout.</li>
@@ -206,20 +206,20 @@
 <div class="portal-head">
 <div class="portal-backlink">
 <div class="portal-title">From <span class="portal-text-title">localibrary.nuxt.current-status</span></div>
-<a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
+<a href="https://supermanzer.github.io/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html" class="portal-arrow">Go to text <span class="right-arrow">→</span></a>
 </div>
 </div>
 <div id="portal-parent-anchor" class="portal-parent" markdown="1">
 <div class="portal-parent-fader-top"></div>
 <div class="portal-parent-fader-bottom"></div><h3 id="3272021"><a aria-hidden="true" class="anchor-heading" href="#3272021"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>3.27.2021</h3>
 <hr>
-<p>The update queries are written to set the correct <code>status</code> of a <code>BookInstance</code> record have been written (see <a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">here</a>). The update to the related <code>BookInstance</code> record using the <code>status_patron</code> annotation has been included in the <code>save()</code> method of the <code>BorrowedCopy</code> data model. To complete the approach to using subqueries and annotations when dealing with the BookInstance, a custom filter and custom actions needs to be added to the default Django admin interface (which is currently how "Library Staff" interact with the database).</p>
+<p>The update queries are written to set the correct <code>status</code> of a <code>BookInstance</code> record have been written (see <a href="https://supermanzer.github.io/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">here</a>). The update to the related <code>BookInstance</code> record using the <code>status_patron</code> annotation has been included in the <code>save()</code> method of the <code>BorrowedCopy</code> data model. To complete the approach to using subqueries and annotations when dealing with the BookInstance, a custom filter and custom actions needs to be added to the default Django admin interface (which is currently how "Library Staff" interact with the database).</p>
 </div></div><p></p><p></p>
 <hr>
 <h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
 <ol>
-<li><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html">Current Status &#x26; Next Steps</a></li>
-<li><a href="https://supermanzer.github.io/DendronNotes/DendronNotes/notes/f02e4c76-8350-4f2c-b9cb-4830eb7625f7.html">Features - Current and Future</a></li>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/856843c7-5881-4d05-becc-7ae2f6a6499d.html">Current Status &#x26; Next Steps</a></li>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/f02e4c76-8350-4f2c-b9cb-4830eb7625f7.html">Features - Current and Future</a></li>
 </ol><span id="navId" data="84a5986a-2b11-4161-8a4e-7f107f2583c3"></span>
 
                 

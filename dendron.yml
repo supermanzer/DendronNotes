@@ -9,7 +9,7 @@ site:
     siteHierarchies:
         - root
     siteRootDir: docs
-    siteUrl: https://supermanzer.github.io/DendronNotes/
+    siteUrl: 'https://supermanzer.github.io/DendronNotes/'
     usePrettyRefs: true
     title: Manzer Notes
     description: Personal knowledge space
@@ -17,3 +17,11 @@ site:
         action: useVault
         payload:
             - vault
+initializeRemoteVaults: true
+journal:
+    dailyDomain: daily
+    name: journal
+    dateFormat: y.MM.dd
+    addBehavior: childOfDomain
+    firstDayOfWeek: 1
+dendronVersion: 0.47.1

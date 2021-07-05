@@ -2,7 +2,7 @@
 id: c49bdcee-daa2-4b8d-af33-af74f37173f0
 title: Local Library
 desc: "Project overview"
-updated: 1624725739804
+updated: 1625511453338
 created: 1616265994869
 ---
 
@@ -12,11 +12,18 @@ This project is a playground of sorts for various ideas and technologies I am cu
 
 The application built here is based upon the excellent [Django tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) created by the bright folks at Mozilla Developer Network. This tutorial took me from a general, if basic, understanding of implementing Django to a level of mastery that made me confident I could build production software tools with it. It's become a core part of my goto toolkit when building database powered applcations.
 
+## Functionality Problem Solving
+The links below represent a few of the areas where I have tried to think through some aspect of functionality I wanted to implement.
+
+* [[localibrary.models.dependent-status.approaches]]  - Using Django query annotations to simplify modifying book copy statuses
+* [[localibrary.user-notifications]] - Defining both front and back end componets to be employed in providing users notifications about things like late fees and reserved books
+
+
 ### Long Term Goals - Tentative:
 *  Go from monolith (current design) to SOA
     * Identify publicly available services that could replace some functionality (ID/Auth)
     * Redesign custom services for different aspects of current monolith (e.g. "payments")
-    *Evaluate trade-offs & risks: scaling, data replication/incosistencies.
+    * Evaluate trade-offs & risks: scaling, data replication/incosistencies.
 
 
 ![[localibrary.next-steps]]

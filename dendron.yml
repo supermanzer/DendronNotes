@@ -18,6 +18,8 @@ site:
         payload:
             - vault
 initializeRemoteVaults: true
+mermaid: true
+generateChangelog: true
 journal:
     dailyDomain: daily
     name: journal

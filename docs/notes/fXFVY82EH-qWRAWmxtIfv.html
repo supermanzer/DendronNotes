@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   
-  <title>Next Steps - Manzer Notes</title>
+  <title>User Notifications - Manzer Notes</title>
   
 
   <link
@@ -43,22 +43,22 @@
 <meta name="description" content="Personal knowledge space">
 <meta name="author" content="">
 
-<link rel="canonical" href="https://supermanzer.github.io/DendronNotes//notes/7d58e15c-b5b3-4b61-b8da-1e201b733a2c.html">
+<link rel="canonical" href="https://supermanzer.github.io/DendronNotes//notes/fXFVY82EH-qWRAWmxtIfv.html">
 
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://supermanzer.github.io/DendronNotes//notes/7d58e15c-b5b3-4b61-b8da-1e201b733a2c.html">
+<meta property="og:url" content="https://supermanzer.github.io/DendronNotes//notes/fXFVY82EH-qWRAWmxtIfv.html">
 <meta property="og:description" content="Personal knowledge space">
 <meta property="og:image" content="https://supermanzer.github.io/DendronNotes/undefined">
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:url" content="https://supermanzer.github.io/DendronNotes//notes/7d58e15c-b5b3-4b61-b8da-1e201b733a2c.html">
+<meta name="twitter:url" content="https://supermanzer.github.io/DendronNotes//notes/fXFVY82EH-qWRAWmxtIfv.html">
 <meta name="twitter:description" content="Personal knowledge space">
 <meta name="twitter:image" content="https://supermanzer.github.io/DendronNotes/undefined">
 
 
-  <meta property="og:title" content="Next Steps - Manzer Notes" />
-  <meta name="twitter:title" content="Next Steps - Manzer Notes" />
+  <meta property="og:title" content="User Notifications - Manzer Notes" />
+  <meta name="twitter:title" content="User Notifications - Manzer Notes" />
   
 </head>
 
@@ -132,7 +132,7 @@
       
         
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item">Next Steps</li></ol>
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes">Manzer's Notes</a></li><li class="breadcrumb-nav-list-item"><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li><li class="breadcrumb-nav-list-item">User Notifications</li></ol>
           </nav>
         
       
@@ -168,10 +168,10 @@
 <div id="main" role="main">
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Next Steps">
+    <meta itemprop="headline" content="User Notifications">
     
-    <meta itemprop="datePublished" content="2021-06-12T11:53:16+00:00">
-    <meta itemprop="dateModified" content="2021-06-12T11:57:44+00:00">
+    <meta itemprop="datePublished" content="2021-07-05T11:03:14+00:00">
+    <meta itemprop="dateModified" content="2021-07-05T11:59:10+00:00">
 
     <div class="page__inner-wrap">
 
@@ -181,28 +181,29 @@
 
         
 
-        <h1 id="next-steps"><a aria-hidden="true" class="anchor-heading" href="#next-steps"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Next Steps</h1>
-<h2 id="6122021"><a aria-hidden="true" class="anchor-heading" href="#6122021"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>6/12/2021</h2>
-<p>Aside from finishing up the general UI/UX interface, the next steps in using this project to practice elements of building full stack, distributed web applications will need to include cloud deployment.</p>
+        <h1 id="user-notifications"><a aria-hidden="true" class="anchor-heading" href="#user-notifications"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>User Notifications</h1>
+<p>Since this aspect of the application will utililze both front and back-end features, I'm not splitting it out into either the Models or Nuxt sections.</p>
+<h2 id="types-of-notifications"><a aria-hidden="true" class="anchor-heading" href="#types-of-notifications"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Types of Notifications</h2>
+<p>Let's think through the kinds of notifications we would want to send a user and where in their experience with the application this would take place.</p>
+<h3 id="a-note-on-api-design"><a aria-hidden="true" class="anchor-heading" href="#a-note-on-api-design"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>A Note on API Design</h3>
+<p>Since both of these kinds of information represent user-specific data, I think we shoud nest the routes for retrieving all of this data within the general <code>user/:id/</code> endpoint.  This is a good place to use the <a href="https://www.django-rest-framework.org/api-guide/viewsets/#marking-extra-actions-for-routing"><code>@action</code> decorators for Django-REST-Framework viewsets</a></p>
+<h3 id="late-fees"><a aria-hidden="true" class="anchor-heading" href="#late-fees"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Late Fees</h3>
+<p>Less than fun for the user, this notification would alert a user of the total amount of fees owed to the library.  Now what do we need to make this happen?</p>
 <ul>
-<li>Configure AWS deployment
-<ul>
-<li>Utilise Terraform for resource configuration</li>
-<li>Try out using EKS to configure K8s cluster deployment</li>
+<li><strong>Home page</strong>: This should be presented to the user under our banner on the home page.  We will want a component that makes a request to the API and, if the fees returned are greater than 0. display a warning.  Right now I think this should just have a link to the user's profile page since the intent of that page is to handle all user-specific features.</li>
+<li><strong>Snack bar</strong>:  We want to get paid right?  So we'll put it up in their face.  This will also give me exposure to integrating more buttons on the Snack bar element besides the <code>Close</code> feature.</li>
+<li><strong>Pay Fee Component</strong>:  This would be a simple form that displays each instance of a Borrowed copy for which we have an outstanding late fee and request the user to pay their fees.</li>
+<li><strong>API</strong>:  Rather than fecthing all the books associated witha user and performing some <code>reduce()</code> operation to get the total late fees, I think we can do this in the database.  It may not be best practice because generalized approaches are usually preferred but I'm in charge here and I say we're using the PostgreSQL server for this!  </li>
 </ul>
-</li>
-<li>Configure GCP Deployment
-<ul>
-<li>Also design a Terraform workflow</li>
-<li>Deploy with GCP K8s managed worfklow.</li>
-</ul>
-</li>
-</ul>
+<h3 id="reservations"><a aria-hidden="true" class="anchor-heading" href="#reservations"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Reservations</h3>
+<p>Now here's something our patrons will enjoy a bit more.  We want to notify them when a book they have reserved has been returned to circulation.  For a refresher on this workflow take a peek <a href="https://supermanzer.github.io/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">here</a>.  Alright so how should this work?</p>
+<p>I'm thinking the same snack bar/home page element approach as I would want multiple chances to encounter the notification that a book I was waiting on is available.  We don't need any mechanism to pay fees and we can re-use the checkout functionality currently available for book instances.  </p>
+<p>The real question here is how to identify when this is the case for a given user's <code>BorrowedCopy</code> record.  The back end allows any number of users to create reservations for books that are not currently available.  We need to ensure we apply a FIFO strategy to these reservations <strong>and</strong> we have a way to to query our <code>BorrowedCopy</code> records by user and <em>only</em> return records that are valid for checkout.  I smell more query annotations!</p>
 <hr>
 <h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
 <ul>
 <li><a href="https://supermanzer.github.io/DendronNotes/notes/c49bdcee-daa2-4b8d-af33-af74f37173f0.html">Local Library</a></li>
-</ul><span id="navId" data="7d58e15c-b5b3-4b61-b8da-1e201b733a2c"></span>
+</ul><span id="navId" data="fXFVY82EH-qWRAWmxtIfv"></span>
 
                 
       </section>

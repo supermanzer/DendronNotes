@@ -38,6 +38,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
    
+   
   
 <meta name="description" content="Personal knowledge space">
 <meta name="author" content="">
@@ -139,6 +140,9 @@
 
         
         
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+        
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -167,7 +171,7 @@
     <meta itemprop="headline" content="Local Library">
     
     <meta itemprop="datePublished" content="2021-03-20T11:46:34+00:00">
-    <meta itemprop="dateModified" content="2021-06-26T09:42:19+00:00">
+    <meta itemprop="dateModified" content="2021-07-05T11:57:33+00:00">
 
     <div class="page__inner-wrap">
 
@@ -181,13 +185,19 @@
 <h3 id="project-github-repo"><a aria-hidden="true" class="anchor-heading" href="#project-github-repo"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a><a href="https://github.com/supermanzer/NuxtDRFMDN">Project Github Repo</a></h3>
 <p>This project is a playground of sorts for various ideas and technologies I am curious about implementing in a web application. Often times I will find myself working through a tutorial while learning some new tech and find myself curious about how I would integrate it into a larger project. One of the points of developing the <strong>Local Library</strong> application is to have that larger project into which I can attempt to insert various technologies and application workflows I am curious about. </p>
 <p>The application built here is based upon the excellent <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django">Django tutorial</a> created by the bright folks at Mozilla Developer Network. This tutorial took me from a general, if basic, understanding of implementing Django to a level of mastery that made me confident I could build production software tools with it. It's become a core part of my goto toolkit when building database powered applcations.</p>
+<h2 id="functionality-problem-solving"><a aria-hidden="true" class="anchor-heading" href="#functionality-problem-solving"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Functionality Problem Solving</h2>
+<p>The links below represent a few of the areas where I have tried to think through some aspect of functionality I wanted to implement.</p>
+<ul>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/c874cfd9-6e98-431b-a86a-b60d0cbf3a69.html">localibrary.models.dependent-status.approaches</a>  - Using Django query annotations to simplify modifying book copy statuses</li>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/fXFVY82EH-qWRAWmxtIfv.html">localibrary.user-notifications</a> - Defining both front and back end componets to be employed in providing users notifications about things like late fees and reserved books</li>
+</ul>
 <h3 id="long-term-goals---tentative"><a aria-hidden="true" class="anchor-heading" href="#long-term-goals---tentative"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Long Term Goals - Tentative:</h3>
 <ul>
 <li>Go from monolith (current design) to SOA
 <ul>
 <li>Identify publicly available services that could replace some functionality (ID/Auth)</li>
-<li>Redesign custom services for different aspects of current monolith (e.g. "payments")
-*Evaluate trade-offs &#x26; risks: scaling, data replication/incosistencies.</li>
+<li>Redesign custom services for different aspects of current monolith (e.g. "payments")</li>
+<li>Evaluate trade-offs &#x26; risks: scaling, data replication/incosistencies.</li>
 </ul>
 </li>
 </ul>
@@ -223,7 +233,13 @@
 <li><a href="https://supermanzer.github.io/DendronNotes/notes/ecde1434-0562-43bb-855b-fc9c7c5a4f29.html">Models</a></li>
 <li><a href="https://supermanzer.github.io/DendronNotes/notes/7d58e15c-b5b3-4b61-b8da-1e201b733a2c.html">Next Steps</a></li>
 <li><a href="https://supermanzer.github.io/DendronNotes/notes/84a5986a-2b11-4161-8a4e-7f107f2583c3.html">Nuxt - Front End</a></li>
-</ol><span id="navId" data="c49bdcee-daa2-4b8d-af33-af74f37173f0"></span>
+<li><a href="https://supermanzer.github.io/DendronNotes/notes/fXFVY82EH-qWRAWmxtIfv.html">User Notifications</a></li>
+</ol>
+<hr>
+<h2 id="backlinks"><a aria-hidden="true" class="anchor-heading" href="#backlinks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Backlinks</h2>
+<ul>
+<li><a href="https://supermanzer.github.io/DendronNotes/">Manzer's Notes</a></li>
+</ul><span id="navId" data="c49bdcee-daa2-4b8d-af33-af74f37173f0"></span>
 
                 
       </section>
